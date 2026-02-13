@@ -1,0 +1,14 @@
+# Build artifacts
+app
+*.o
+
+# Docker experiments / backups
+Dockerfile_*
+*.txt
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+
+# Jenkinsfile experiments / backups
+Jenkinsfile_*
