@@ -47,8 +47,8 @@ RUN echo "Building all targets..." && \
     
 
 #ENTRYPOINT ["./app_linux"]
-ENTRYPOINT ["./app_release"]
-#ENTRYPOINT ["/app/init.sh"]
+#ENTRYPOINT ["./app_release"]
+ENTRYPOINT ["/app/init.sh"]
 
 
 #docker build -t c-gcc-demo:release --build-arg RELEASE=true --build-arg GIT_VERSION=aaa .
