@@ -70,6 +70,17 @@ pipeline {
             }
         }
         
+        stage('Deploy Artifact') {
+            steps {
+                // This 'sshagent' block makes your ed25519 key available to the shell
+                sshagent(['econolte_labadmin_scp']) {
+                    powershell '''
+                        # Use -o StrictHostKeyChecking=no so the build doesn't hang on the "Trust this host?" prompt
+                        scp -o StrictHostKeyChecking=no your-app-file.exe c:\\temp\\app labadmin@192.168.86.229:C:\\wipro\\appp
+                    '''
+                }
+            }
+        }
 
                
         stage('Deploy PPC Binary') {
