@@ -30,16 +30,16 @@ pipeline {
                 stage('Build Docker Image linux') {
                     steps {
                         // This builds your main Dockerfile
-                        powershell 'docker build -t c-gcc-demo:linux --build-arg GIT_VERSION=$(git describe --tags --dirty --always) .'
+                        powershell 'docker build -t c-gcc-demo --build-arg GIT_VERSION=$(git describe --tags --dirty --always) .'
                     }
                 }
                 
-                stage('Build Docker Image release') {
-                    steps {
-                        // This builds your main Dockerfile
-                        powershell 'docker build -t c-gcc-demo:release --build-arg RELEASE=true --build-arg GIT_VERSION=$(git describe --tags --dirty --always) .'
-                    }
-                }
+//                stage('Build Docker Image release') {
+//                    steps {
+//                        // This builds your main Dockerfile
+//                        powershell 'docker build -t c-gcc-demo:release --build-arg RELEASE=true --build-arg GIT_VERSION=$(git describe --tags --dirty --always) .'
+//                    }
+//                }
                 
                 stage('Health Check') {
                     steps {
