@@ -4,10 +4,27 @@ pipeline {
     stages {
         stage('Initialize') {
             steps {
-                echo 'Starting 59LAB Build...'
+                echo 'Starting Econolite Build...'
                 powershell 'docker version'
             }
         }
+        
+        
+        stages {
+            stage('Checkout Source') {
+                steps {
+                    // This pulls the code from your GitHub repo using the token
+                    checkout([$class: 'GitSCM', 
+                        branches: [[name: '*/main']], 
+                        userRemoteConfigs: [[
+                            url: 'https://github.com/ziwuadct/david_econolite.git', 
+                            credentialsId: 'econolite-github-token' // Must match the ID from Step 1
+                        ]]
+                    ])
+                }
+            }   
+        }
+        
         
         
         stage('build docker') {
