@@ -70,21 +70,7 @@ pipeline {
             }
         }
         
-        stage('Deploy Artifact') {
-            steps {
-                // Use sshUserPrivateKey - this is built into Jenkins and very stable
-                withCredentials([sshUserPrivateKey(credentialsId: 'econolte_labadmin_scp', 
-                                                  keyFileVariable: 'SSH_KEY')]) {
-                    powershell """
-                        # -i points to the temporary key file Jenkins created
-                        # -o StrictHostKeyChecking=no prevents the "trust this host" prompt
-                        scp -i "\$env:SSH_KEY" -o StrictHostKeyChecking=no "C:\\temp\\app" "labadmin@192.168.86.229:C:\\wipro\\appp"
-                    """
-                }
-            }
-        }
-
-               
+             
         stage('Deploy PPC Binary') {
             steps {
             
