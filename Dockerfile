@@ -17,6 +17,7 @@ RUN apt-get update && \
 WORKDIR /app
 
 COPY init.sh /app/init.sh
+RUN sed -i 's/\r$//' /app/init.sh
 RUN chmod +x /app/init.sh
 
 # Copy source + Makefile
