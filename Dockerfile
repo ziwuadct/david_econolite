@@ -43,7 +43,7 @@ RUN echo "Building all targets..." && \
     make CC="$PPC_CC" RELEASE=true GIT_VERSION="$GIT_VERSION"
     
 
-ENTRYPOINT ["./app"]
+ENTRYPOINT ["./app_release"]
 
 #docker build -t c-gcc-demo:release --build-arg RELEASE=true --build-arg GIT_VERSION=aaa .
 #docker build -t c-gcc-demo:release --build-arg RELEASE=true .
