@@ -82,9 +82,11 @@ pipeline {
                 '''
                 
                 powershell 'docker create --name tmp_app c-gcc-demo:release'
-                powershell 'docker cp tmp_app:/app/repos/app c:/temp'
+                powershell 'docker cp tmp_app:/app/repos/app_release c:/temp'
+                powershell 'docker cp tmp_app:/app/repos/app_linux c:/temp'
                 
-                powershell 'pscp -batch -hostkey "SHA256:MremSl0rKC8Ae92G8DNXIvGVEVGPuaaeDn52/W21bUo" -pw MyLabPass123! c:\\temp\\app labadmin@192.168.86.229:C:\\wipro\\'
+                powershell 'pscp -batch -hostkey "SHA256:MremSl0rKC8Ae92G8DNXIvGVEVGPuaaeDn52/W21bUo" -pw MyLabPass123! c:\\temp\\app_release labadmin@192.168.86.229:C:\\wipro\\'
+                powershell 'pscp -batch -hostkey "SHA256:MremSl0rKC8Ae92G8DNXIvGVEVGPuaaeDn52/W21bUo" -pw MyLabPass123! c:\\temp\\app_linux labadmin@192.168.86.229:C:\\wipro\\'
             }
         }
 
