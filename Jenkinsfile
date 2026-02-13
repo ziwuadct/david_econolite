@@ -76,7 +76,7 @@ pipeline {
                 sshagent(['econolte_labadmin_scp']) {
                     powershell '''
                         # Use -o StrictHostKeyChecking=no so the build doesn't hang on the "Trust this host?" prompt
-                        scp -o StrictHostKeyChecking=no your-app-file.exe c:\\temp\\app labadmin@192.168.86.229:C:\\wipro\\appp
+                        scp -o StrictHostKeyChecking=no c:\\temp\\app labadmin@192.168.86.229:C:\\wipro\\appp
                     '''
                 }
             }
