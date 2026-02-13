@@ -11,6 +11,13 @@ SRC := main.c
 RELEASE ?= false
 GIT_VERSION ?= unknown
 
+# Set target name based on build mode
+ifeq ($(RELEASE),true)
+    TARGET := app_release
+else
+    TARGET := app_linux
+endif
+
 # =========================
 # Git version
 # =========================

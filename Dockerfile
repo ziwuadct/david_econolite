@@ -23,13 +23,25 @@ COPY ./repos ./repos
 WORKDIR /app/repos
 
 # Use Makefile to build, pass RELEASE and select compiler
-RUN if [ "$RELEASE" = "true" ]; then \
-        echo "Release build: using gcc"; \
-        make CC="$PPC_CC" RELEASE=true GIT_VERSION="$GIT_VERSION"; \
-    else \
-        echo "Debug build: using gcc"; \
-        make CC="$LINUX_CC" RELEASE=false GIT_VERSION="$GIT_VERSION"; \
-    fi
+#RUN if [ "$RELEASE" = "true" ]; then \
+#        echo "Release build: using gcc"; \
+#        make CC="$PPC_CC" RELEASE=true GIT_VERSION="$GIT_VERSION"; \
+#    else \
+#        echo "Debug build: using gcc"; \
+#        make CC="$LINUX_CC" RELEASE=false GIT_VERSION="$GIT_VERSION"; \
+#    fi
+    
+    
+# Build both Linux (Debug) and PPC (Release) versions
+RUN echo "Building all targets..." && \
+    # 1. Build the Linux Debug version
+    make clean && \
+    make CC="$LINUX_CC" RELEASE=false GIT_VERSION="$GIT_VERSION" && \
+    \
+    # 2. Build the PPC Release version
+    make clean && \
+    make CC="$PPC_CC" RELEASE=true GIT_VERSION="$GIT_VERSION"
+    
 
 ENTRYPOINT ["./app"]
 
